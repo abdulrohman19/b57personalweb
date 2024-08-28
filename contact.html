@@ -1,11 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact</title>
-</head>
-<body>
-    
-</body>
+    <style>
+      *,
+      body {
+        margin: 0;
+      }
+    </style>
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <ul
+      style="
+        background-color: #ffeac5;
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+        gap: 35px;
+        align-items: center;
+        padding: 10px;
+        margin-bottom: 50px;
+      "
+    >
+      <li>
+        <img
+          src="https://dumbways.id/assets/images/brandred.png"
+          style="
+            width: 50px;
+            height: 25px;
+            object-fit: contain;
+            margin-left: 60px;
+          "
+        />
+      </li>
+      <li>
+        <a
+          href="index.html"
+          style="text-decoration: none; color: brown; font-weight: bold"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          href="blog.html"
+          style="text-decoration: none; color: brown; font-weight: bold"
+          >Blog</a
+        >
+      </li>
+      <li
+        style="
+          display: flex;
+          width: 100%;
+          justify-content: flex-end;
+          margin-right: 60px;
+        "
+      >
+        <a
+          href="contact.html"
+          style="
+            text-decoration: none;
+            background-color: brown;
+            padding: 16px;
+            color: white;
+            border-radius: 20px;
+          "
+          >Contact Me</a
+        >
+      </li>
+    </ul>
+
+    <form
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-left: 410px;
+        padding-right: 410px;
+      "
+    >
+      <h2 style="text-align: center">Contact Me</h2>
+      <h3>Name</h3>
+      <input type="text" placeholder="Full Name" style="height: 30px;"/>
+      <h3>Email</h3>
+      <input type="email" placeholder="Email Address" style="height: 30px" />
+      <h3>Number</h3>
+      <input type="number" placeholder="Mobile Number" style="height: 30px" />
+      <h3>Subject</h3>
+
+      <select style="height: 30px">
+        <option>Select Role</option>
+        <option>Frontend Developer</option>
+        <option>Backend Developer</option>
+        <option>Fullstack Developer</option>
+        <option>Other</option>
+      </select>
+      <h3>Message</h3>
+      <textarea cols="30" rows="9" placeholder="Your message"></textarea>
+      <input class="contact-button" type="submit" value="Submit" />
+    </form>
+  </body>
 </html>
