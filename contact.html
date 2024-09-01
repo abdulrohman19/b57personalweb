@@ -10,72 +10,71 @@
         margin: 0;
       }
     </style>
-
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/project.css"/>
   </head>
   <body>
-    <ul
-      style="
-        background-color: #ffeac5;
-        list-style-type: none;
-        display: flex;
-        flex-direction: row;
-        gap: 35px;
-        align-items: center;
-        padding: 10px;
-        margin-bottom: 50px;
-      "
-    >
-      <li>
-        <img
-          src="https://dumbways.id/assets/images/brandred.png"
-          style="
-            width: 50px;
-            height: 25px;
-            object-fit: contain;
-            margin-left: 60px;
-          "
-        />
-      </li>
-      <li>
-        <a
-          href="index.html"
-          style="text-decoration: none; color: brown; font-weight: bold"
-          >Home</a
-        >
-      </li>
-      <li>
-        <a
-          href="blog.html"
-          style="text-decoration: none; color: brown; font-weight: bold"
-          >Blog</a
-        >
-      </li>
-      <li
+    <nav>
+      <ul
         style="
+          background-color: #ffeac5;
+          list-style-type: none;
           display: flex;
-          width: 100%;
-          justify-content: flex-end;
-          margin-right: 60px;
+          flex-direction: row;
+          gap: 35px;
+          align-items: center;
+          padding: 10px;
+          margin-bottom: 50px;
+          white-space: nowrap;
         "
       >
-        <a
-          href="contact.html"
+        <li>
+          <img
+            src="https://dumbways.id/assets/images/brandred.png"
+            style="
+              width: 50px;
+              height: 25px;
+              object-fit: contain;
+              margin-left: 60px;
+            "
+          />
+        </li>
+        <li>
+          <a
+            href="index.html"
+            style="text-decoration: none; color: brown; font-weight: bold"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="my-project.html"
+            style="text-decoration: none; color: brown; font-weight: bold"
+            >My Project</a
+          >
+        </li>
+        <li
           style="
-            text-decoration: none;
-            background-color: brown;
-            padding: 16px;
-            color: white;
-            border-radius: 20px;
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            margin-right: 60px;
           "
-          >Contact Me</a
         >
-      </li>
-    </ul>
+          <a
+            href="contact.html"
+            style="
+              text-decoration: none;
+              background-color: brown;
+              padding: 16px;
+              color: white;
+              border-radius: 20px;
+            "
+            >Contact Me</a
+          >
+        </li>
+      </ul>
+    </nav>
 
     <form
       onsubmit="sendEmail(event)"
@@ -83,28 +82,46 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        padding-left: 410px;
-        padding-right: 410px;
       "
     >
       <h2 style="text-align: center">Contact Me</h2>
       <h3>Name</h3>
-      <input id="name" type="text" placeholder="Full Name" style="height: 30px;"/>
+      <input
+        id="name"
+        type="text"
+        placeholder="Full Name"
+        style="height: 30px"
+      />
       <h3>Email</h3>
-      <input id="email" type="email" placeholder="Email Address" style="height: 30px" />
+      <input
+        id="email"
+        type="email"
+        placeholder="Email Address"
+        style="height: 30px"
+      />
       <h3>Number</h3>
-      <input id="phoneNumber" type="number" placeholder="Mobile Number" style="height: 30px" />
+      <input
+        id="phoneNumber"
+        type="number"
+        placeholder="Mobile Number"
+        style="height: 30px"
+      />
       <h3>Subject</h3>
 
       <select id="subject" style="height: 30px">
-        <option value="" >Select an Option</option>
+        <option value="">Select an Option</option>
         <option value="Frontend Developer">Frontend Developer</option>
         <option value="Backend Developer">Backend Developer</option>
         <option value="Fullstack Developer">Fullstack Developer</option>
         <option value="Other">Other</option>
       </select>
       <h3>Message</h3>
-      <textarea id="message" cols="30" rows="9" placeholder="Your message"></textarea>
+      <textarea
+        id="message"
+        cols="30"
+        rows="9"
+        placeholder="Your message"
+      ></textarea>
       <input class="contact-button" type="submit" value="Submit" />
     </form>
     <script src="assets/js/contact.js"></script>
