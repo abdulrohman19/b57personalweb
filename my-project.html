@@ -97,40 +97,41 @@
                 <textarea name="description" id="description" cols="30" rows="10"></textarea>
             </div>
             <div>
-                <h4>Technologies</h4>
-                <form action="" method="post" style="display: flex; justify-content: space-between; width: 300px;">
-                    <!-- Bagian Kiri -->
-                    <div style="display: flex; gap: 20px;">
-                        <div style="display: flex; flex-direction: column;">
-                            <div>
-                                <input type="checkbox" id="node-js" name="node-js" value="">
-                                <label for="node-js">Node Js</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="react-js" name="react-js" value="">
-                                <label for="react-js">React Js</label>
-                            </div>
-                        </div>
-                        <!-- Bagian Kanan -->
-                        <div style="display: flex; flex-direction: column;">
-                            <div>
-                                <input type="checkbox" id="next-js" name="next-js" value="">
-                                <label for="next-js">Next Js</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="typescript" name="typescript" value="">
-                                <label for="typescript">TypeScript</label>
-                            </div>
-                        </div>
+              <h4>Technologies</h4>
+              <form action="" method="post" style="display: flex; justify-content: space-between; width: 300px;">
+                <!-- Bagian Kiri -->
+                <div style="display: flex; gap: 20px;">
+                  <div style="display: flex; flex-direction: column;">
+                    <div>
+                      <input type="checkbox" id="node-js" name="technology" value="node-js" />
+                      <label for="node-js">Node Js</label>
                     </div>
                     <div>
-                        <h4>Upload File:</h4>
-                        <label for="upload"></label>
-                        <input type="file" id="upload" name="upload" />
+                      <input type="checkbox" id="react-js" name="technology" value="react-js" />
+                      <label for="react-js">React Js</label>
                     </div>
-                    <input type="submit" value="Submit"/>
-                </form>
+                  </div>
+                  <!-- Bagian Kanan -->
+                  <div style="display: flex; flex-direction: column;">
+                    <div>
+                      <input type="checkbox" id="next-js" name="technology" value="next-js" />
+                      <label for="next-js">Next Js</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="typescript" name="technology" value="typescript" />
+                      <label for="typescript">TypeScript</label>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4>Upload File:</h4>
+                  <label for="upload"></label>
+                  <input type="file" id="upload" name="upload" />
+                </div>
+                <input type="submit" value="Submit" />
+              </form>
             </div>
+            
         </form>
     </div>
     <script src="assets/js/project.js"></script>
