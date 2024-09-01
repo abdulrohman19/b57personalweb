@@ -113,26 +113,9 @@
       margin-bottom: 10px;
     }
   }
-  /* project.css */
+ /* project.css */
 
-body {
-    font-family: Arial, sans-serif;
-  }
-  
-  #project-header {
-    text-align: center;
-    margin: 20px;
-  }
-  
-  #project-list {
-    display: flex;
-    flex-wrap: wrap; /* Allows wrapping of items to new lines if necessary */
-    gap: 20px;
-    justify-content: center; /* Center align items horizontally */
-    margin: 20px;
-  }
-  
-  .project-card {
+.project-card {
     background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -141,6 +124,7 @@ body {
     max-width: 300px; /* Set a maximum width for the card */
     width: 100%;
     text-align: center;
+    position: relative; /* For positioning the buttons */
   }
   
   .project-card img {
@@ -148,6 +132,98 @@ body {
     height: auto;
     margin-bottom: 15px;
   }
+  
+  .project-card .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .project-card .actions button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0 5px;
+  }
+  
+  .project-card .actions button.delete {
+    background: #dc3545;
+  }
+/* Basic reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Center the project header */
+#project-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.project-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  max-width: 400px;
+  text-align: left;
+  transition: transform 0.2s;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+}
+
+.project-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.edit {
+  background-color: #007bff;
+  color: #fff;
+}
+
+button.delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Center project list container */
+#project-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+  
   
   
   

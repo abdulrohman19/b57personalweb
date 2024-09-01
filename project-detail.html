@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Detail</title>
+  <link rel="stylesheet" href="assets/css/project.css">
+  <style>
+    *,
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    #project-detail {
+      max-width: 80%; /* Increase the width to make it more like a news website */
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #project-detail img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 20px;
+    }
+    #project-detail p {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul
+      style="
+        background-color: #ffeac5;
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+        gap: 35px;
+        align-items: center;
+        padding: 10px;
+        margin-bottom: 50px;
+        white-space: nowrap;
+      "
+    >
+      <li>
+        <img
+          src="https://dumbways.id/assets/images/brandred.png"
+          style="
+            width: 50px;
+            height: 25px;
+            object-fit: contain;
+            margin-left: 60px;
+          "
+        />
+      </li>
+      <li>
+        <a
+          href="index.html"
+          style="text-decoration: none; color: brown; font-weight: bold"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          href="my-project.html"
+          style="text-decoration: none; color: brown; font-weight: bold"
+          >My Project</a
+        >
+      </li>
+      <li
+        style="
+          display: flex;
+          width: 100%;
+          justify-content: flex-end;
+          margin-right: 60px;
+        "
+      >
+        <a
+          href="contact.html"
+          style="
+            text-decoration: none;
+            background-color: brown;
+            padding: 16px;
+            color: white;
+            border-radius: 20px;
+          "
+          >Contact Me</a
+        >
+      </li>
+    </ul>
+  </nav>
+  <div id="project-detail">
+    <!-- Project details will be dynamically inserted here -->
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const projectDetail = document.querySelector("#project-detail");
+      const urlParams = new URLSearchParams(window.location.search);
+      const projectKey = urlParams.get('key');
+
+      if (projectKey) {
+        const projectData = JSON.parse(localStorage.getItem(projectKey));
+
+        if (projectData) {
+          projectDetail.innerHTML = `
+            ${projectData.fileInfo || ''}
+            <p><strong>Project Name:</strong> ${projectData.projectName}</p>
+            <p><strong>Duration:</strong> ${projectData.duration}</p>
+            <p><strong>Technologies:</strong> ${projectData.technologies}</p>
+            <p><strong>Description:</strong> ${projectData.description}</p>
+          `;
+        } else {
+          projectDetail.innerHTML = "<p>No project details found.</p>";
+        }
+      } else {
+        projectDetail.innerHTML = "<p>No project selected.</p>";
+      }
+    });
+  </script>
+</body>
+</html>
