@@ -9,16 +9,44 @@
         margin: 0;
       }
 
+      /* Layout default untuk layar besar */
+      .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .personal-photo {
+        position: absolute;
+        top: 100px;
+        right: 100px;
+      }
+
+      /* Responsif untuk layar kecil */
       @media screen and (max-width: 768px) {
-        
+
+        .container {
+          flex-direction: column;
+        }
+
+        .personal-photo {
+          display: flex;
+          padding-right: 300px;
+          position: static; 
+        }
+
+        .social-media {
+          padding-left: 275px;
+        }
       }
     </style>
+
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/project.css"/>
+    <link rel="stylesheet" href="assets/css/project.css" />
   </head>
   <body>
     <nav>
@@ -82,101 +110,102 @@
         </li>
       </ul>
     </nav>
-
-    <div
-  style="
-    width: 1200px;
-    padding: 15px;
-    margin: auto;
-    border-radius: 9px;
-    box-shadow: 10px 10px 20px gray;
-    position: relative;
-    overflow: hidden; /* Ensures content stays inside the card */
-  "
->
-  <div
-    style="padding-top: 50px; padding-left: 50px; padding-right: 450px"
-    class="text-intro"
-  >
-    <h1 style="margin-bottom: 15px">Hi, Welcome to my personal website</h1>
-    <p style="margin-bottom: 15px; text-align: justify">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores,
-      harum exercitationem voluptates commodi ea assumenda debitis
-      perspiciatis enim, voluptatum odio officia numquam aspernatur quisquam
-      saepe fugit rerum recusandae nostrum fuga. Error similique architecto
-      blanditiis magni, asperiores eum incidunt debitis libero beatae
-      consequuntur deserunt dolorum, ipsam in sed sequi harum ea modi
-      possimus vel atque. Nemo quibusdam exercitationem molestiae quisquam
-      sint. Repellat commodi quos quia aspernatur in facilis quasi ut
-      suscipit aut, hic voluptatem deserunt impedit exercitationem odit
-      nostrum illum alias minima. Asperiores amet assumenda minima, soluta
-      repellendus eveniet doloremque modi! Vero dolorem, quod excepturi
-      necessitatibus repellat quo distinctio dolore, beatae animi est
-      voluptates corporis illum, fuga dicta eaque labore! Saepe eum ducimus
-      reiciendis cum omnis corporis necessitatibus modi, tempora dolorum!
-    </p>
-    <div
-      style="
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        font-weight: bold;
-        margin-top: 30px;
-      "
-    >
-      <button class="contact-button" style="border-radius: 20px">
-        <a href="contact.html" style="color: white; text-decoration: none"
-          >Contact</a
+    <div class="container">
+      <div
+        style="
+          width: 1200px;
+          margin: auto;
+          border-radius: 9px;
+          box-shadow: 10px 10px 20px gray;
+          position: relative;
+          overflow: hidden; /* Ensures content stays inside the card */
+        "
+      >
+        <div
+          style="padding-top: 50px; padding-left: 50px; padding-right: 450px"
+          class="text-intro"
         >
-      </button>
-      <p>Download CV <i class="bx bx-download"></i></p>
-    </div>
-    <div
-      class="social-media"
-      style="
-        display: flex;
-        justify-content: flex-start;
-        gap: 15px;
-        margin-top: 20px;
-      "
-    >
-      <a href="https://github.com/abdulrohman19"><i class="bx bxl-github"></i></a>
-      <a href="https://wa.me/6282330926565"><i class="bx bxl-whatsapp"></i></a>
-      <a href="https://www.instagram.com/abdulrohman_art/"><i class="bx bxl-instagram-alt"></i></a>
-      <a href="https://www.linkedin.com/in/abdul-rohman-70b858220/"><i class="bx bxl-linkedin-square"></i></a>
-    </div>
-  </div>
+          <h1 style="margin-bottom: 15px; display: flex">
+            Hi, Welcome to my personal website
+          </h1>
+          <p style="margin-bottom: 15px; text-align: justify">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            Asperiores, harum exercitationem voluptates commodi ea assumenda
+            debitis perspiciatis enim, voluptatum odio officia numquam
+            aspernatur quisquam saepe fugit rerum recusandae nostrum fuga. Error
+            similique architecto blanditiis magni, asperiores eum incidunt
+            debitis libero beatae consequuntur deserunt dolorum, ipsam in sed
+            sequi harum ea modi possimus vel atque. Nemo quibusdam
+            exercitationem molestiae quisquam sint. Repellat commodi quos quia
+            aspernatur in facilis quasi ut suscipit aut, hic voluptatem deserunt
+            impedit exercitationem odit nostrum illum alias minima. Asperiores
+            amet assumenda minima, soluta repellendus eveniet doloremque modi!
+            Vero dolorem, quod excepturi necessitatibus repellat quo distinctio
+            dolore, beatae animi est voluptates corporis illum, fuga dicta eaque
+            labore! Saepe eum ducimus reiciendis cum omnis corporis
+            necessitatibus modi, tempora dolorum!
+          </p>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 20px;
+              font-weight: bold;
+              margin-top: 30px;
+            "
+          >
+            <button class="contact-button" style="border-radius: 20px">
+              <a href="contact.html" style="color: white; text-decoration: none"
+                >Contact</a
+              >
+            </button>
+            <p>Download CV <i class="bx bx-download"></i></p>
+          </div>
+        </div>
 
-  <div
-    style="
-      width: 300px;
-      box-shadow: 5px 5px 10px gray;
-      border-radius: 10px;
-      position: absolute;
-      top: 100px;
-      right: 100px;
-    "
-  >
-    <img
-      style="
-        width: 100%; /* Ensures the image fits within its container */
-        height: auto;
-        object-fit: cover; /* Ensures the image covers the area without stretching */
-        border-radius: 5px;
-      "
-      src="https://media.licdn.com/dms/image/v2/D5603AQGuVntp9fN9tQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718218838011?e=1730332800&v=beta&t=UlztRfJVl7nmvINfTiJJdKrVWIzH1eGqM2eX64mXoag"
-      alt="Profile Picture"
-    />
-    <h1 style="font-size: 28px; text-align: center; margin: 10px">
-      Abdul Rohman
-    </h1>
-    <p style="font-size: 20px; text-align: center; margin-bottom: 20px">
-      Fullstack Developer
-    </p>
-  </div>
-</div>
-
+        <div class="social-media">
+          <a href="https://github.com/abdulrohman19"
+            ><i class="bx bxl-github"></i
+          ></a>
+          <a href="https://wa.me/6282330926565"
+            ><i class="bx bxl-whatsapp"></i
+          ></a>
+          <a href="https://www.instagram.com/abdulrohman_art/"
+            ><i class="bx bxl-instagram-alt"></i
+          ></a>
+          <a href="https://www.linkedin.com/in/abdul-rohman-70b858220/"
+            ><i class="bx bxl-linkedin-square"></i
+          ></a>
+        </div>
+        <div class="personal-photo">
+          <div
+            style="
+              width: 300px;
+              box-shadow: 5px 5px 10px gray;
+              border-radius: 10px;
+              margin: 20px auto;
+            "
+          >
+            <img
+              style="
+                width: 100%; /* Ensures the image fits within its container */
+                height: auto;
+                border-radius: 5px;
+              "
+              src="https://media.licdn.com/dms/image/v2/D5603AQGuVntp9fN9tQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718218838011?e=1730332800&v=beta&t=UlztRfJVl7nmvINfTiJJdKrVWIzH1eGqM2eX64mXoag"
+              alt="Profile Picture"
+            />
+            <h1 style="font-size: 28px; text-align: center; margin: 10px">
+              Abdul Rohman
+            </h1>
+            <p style="font-size: 20px; text-align: center; margin: 10px">
+              Fullstack Developer
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+
     <!-- <script src="learning/9.asynchronous/2.promise.js"></script> -->
   </body>
 </html>
