@@ -9,6 +9,32 @@
         margin: 0;
       }
 
+      .hamburger-button {
+        display: none;
+      }
+
+      .hamburger-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hamburger-container a {
+        width: 100%;
+        text-align: center;
+        background-color: rgba(238, 179, 51, 0.693);
+        padding: 10px 0;
+        border: 1px solid brown;
+      }
+
+      .hamburger-container .hamburger-active {
+        background-color: brown;
+        color: white;
+      }
+
+      .hamburger-hide {
+        display: none;
+      }
+
       /* Layout default untuk layar besar */
       .container {
         display: flex;
@@ -44,7 +70,19 @@
           padding-left:5%;
         }
       }
+
+      @media screen and (max-width: 640px) {
+        .navbar-container li a {
+          display: none;
+        }
+
+        .hamburger-button {
+          display: block;
+        }
+      }
     </style>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet"/>
 
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -55,7 +93,7 @@
   </head>
   <body>
     <nav>
-      <ul
+      <ul class="navbar-container"
         style="
           background-color: #ffeac5;
           list-style-type: none;
@@ -66,6 +104,7 @@
           padding: 10px;
           margin-bottom: 50px;
           white-space: nowrap;
+          height: 78px;
         "
       >
         <li>
@@ -101,6 +140,9 @@
             margin-right: 60px;
           "
         >
+        <button class="hamburger-button" onclick="toggleHamburger()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
           <a
             href="contact.html"
             style="
@@ -114,6 +156,12 @@
           >
         </li>
       </ul>
+      <div id="hamburger-container" class="hamburger-container hamburger-hide">
+        <a href="/index.html" class="hamburger-active">Home</a>
+        <a href="/my-project.html">Add Project</a>
+        <a href="/contact.html">Contact me</a>
+      </div>
+
     </nav>
     <div class="container">
       <div class="card"
@@ -210,7 +258,7 @@
         </div>
       </div>
     </div>
-
+    <script src="assets/js/nav.js"></script>
     <!-- <script src="learning/9.asynchronous/2.promise.js"></script> -->
   </body>
 </html>
