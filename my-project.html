@@ -3,137 +3,224 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog</title>
+    <title>Add Project</title>
     <style>
       *,
       body {
         margin: 0;
       }
+      .hamburger-button {
+        display: none;
+      }
+
+      .hamburger-container {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        z-index: 999;
+        margin-bottom: 20px;
+      }
+
+      .hamburger-container a {
+        text-align: center;
+        background-color: rgba(238, 179, 51, 0.693);
+        padding: 10px 0;
+        border: 1px solid brown;
+        width: 100%;
+      }
+
+      .hamburger-container .hamburger-active {
+        background-color: brown;
+        color: white;
+      }
+
+      .hamburger-hide {
+        display: none;
+      }
+      @media screen and (max-width: 640px) {
+        .navbar-container li a {
+          display: none;
+        }
+
+        .hamburger-button {
+          display: block;
+        }
+      }
     </style>
-    <link rel="stylesheet" href="assets/css/project.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+        <link rel="stylesheet" href="assets/css/style.css" />
+
+    <link rel="stylesheet" href="assets/css/project.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
   </head>
   <body>
     <nav>
-        <ul
+      <ul
+        class="navbar-container"
+        style="
+          background-color: #ffeac5;
+          list-style-type: none;
+          display: flex;
+          flex-direction: row;
+          gap: 35px;
+          align-items: center;
+          padding: 10px;
+          margin-bottom: 50px;
+          white-space: nowrap;
+          height: 78px;
+        "
+      >
+        <li>
+          <img
+            src="https://dumbways.id/assets/images/brandred.png"
+            style="
+              width: 50px;
+              height: 25px;
+              object-fit: contain;
+              margin-left: 60px;
+            "
+          />
+        </li>
+        <li>
+          <a
+            href="index.html"
+            style="text-decoration: none; color: brown; font-weight: bold"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="my-project.html"
+            style="text-decoration: none; color: brown; font-weight: bold"
+            >Add Project</a
+          >
+        </li>
+        <li
           style="
-            background-color: #ffeac5;
-            list-style-type: none;
             display: flex;
-            flex-direction: row;
-            gap: 35px;
-            align-items: center;
-            padding: 10px;
-            margin-bottom: 50px;
-            white-space: nowrap;
+            width: 100%;
+            justify-content: flex-end;
+            margin-right: 60px;
           "
         >
-          <li>
-            <img
-              src="https://dumbways.id/assets/images/brandred.png"
-              style="
-                width: 50px;
-                height: 25px;
-                object-fit: contain;
-                margin-left: 60px;
-              "
-            />
-          </li>
-          <li>
-            <a
-              href="index.html"
-              style="text-decoration: none; color: brown; font-weight: bold"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a
-              href="my-project.html"
-              style="text-decoration: none; color: brown; font-weight: bold"
-              >Add Project</a
-            >
-          </li>
-          <li
+          <button class="hamburger-button" onclick="toggleHamburger()">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <a
+            href="contact.html"
             style="
-              display: flex;
-              width: 100%;
-              justify-content: flex-end;
-              margin-right: 60px;
+              text-decoration: none;
+              background-color: brown;
+              padding: 16px;
+              color: white;
+              border-radius: 20px;
             "
+            >Contact Me</a
           >
-            <a
-              href="contact.html"
-              style="
-                text-decoration: none;
-                background-color: brown;
-                padding: 16px;
-                color: white;
-                border-radius: 20px;
-              "
-              >Contact Me</a
-            >
-          </li>
-        </ul>
-      </nav>
+        </li>
+      </ul>
+      <div id="hamburger-container" class="hamburger-container hamburger-hide">
+        <a href="/index.html" >Home</a>
+        <a href="/my-project.html" class="hamburger-active">Add Project</a>
+        <a href="/contact.html">Contact me</a>
+      </div>
+    </nav>
+    
     <h1>ADD MY PROJECT</h1>
     <div>
-        <form onsubmit="">
-            <div>
-                <h4>Project Name</h4>
-                <label for="project"></label>
-                <input type="text" id="project" />
-            </div>
-            <div style="display: flex; gap: 320px;">
-                <h4>Start Date</h4>
-                <h4>End Date</h4>
-            </div>
-            <div style="display: flex; gap: 20px;">
-                <input type="date" id="start-date" />
-                <input type="date" id="end-date" />
-            </div>
-            <div>
-                <h4>Description</h4>
-                <label for="description"></label>
-                <textarea name="description" id="description" cols="30" rows="10"></textarea>
-            </div>
-            <div>
-              <h4>Technologies</h4>
-              <form action="" method="post" style="display: flex; justify-content: space-between; width: 300px;">
-                <!-- Bagian Kiri -->
-                <div style="display: flex; gap: 20px;">
-                  <div style="display: flex; flex-direction: column;">
-                    <div>
-                      <input type="checkbox" id="node-js" name="technology" value="node-js" />
-                      <label for="node-js">Node Js</label>
-                    </div>
-                    <div>
-                      <input type="checkbox" id="react-js" name="technology" value="react-js" />
-                      <label for="react-js">React Js</label>
-                    </div>
-                  </div>
-                  <!-- Bagian Kanan -->
-                  <div style="display: flex; flex-direction: column;">
-                    <div>
-                      <input type="checkbox" id="next-js" name="technology" value="next-js" />
-                      <label for="next-js">Next Js</label>
-                    </div>
-                    <div>
-                      <input type="checkbox" id="typescript" name="technology" value="typescript" />
-                      <label for="typescript">TypeScript</label>
-                    </div>
-                  </div>
+      <form onsubmit="">
+        <div>
+          <h4>Project Name</h4>
+          <label for="project"></label>
+          <input type="text" id="project" />
+        </div>
+        <div style="display: flex; gap: 320px">
+          <h4>Start Date</h4>
+          <h4>End Date</h4>
+        </div>
+        <div style="display: flex; gap: 20px">
+          <input type="date" id="start-date" />
+          <input type="date" id="end-date" />
+        </div>
+        <div>
+          <h4>Description</h4>
+          <label for="description"></label>
+          <textarea
+            name="description"
+            id="description"
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+        <div>
+          <h4>Technologies</h4>
+          <form
+            action=""
+            method="post"
+            style="display: flex; justify-content: space-between; width: 300px"
+          >
+            <!-- Bagian Kiri -->
+            <div style="display: flex; gap: 20px">
+              <div style="display: flex; flex-direction: column">
+                <div>
+                  <input
+                    type="checkbox"
+                    id="node-js"
+                    name="technology"
+                    value="node-js"
+                  />
+                  <label for="node-js">Node Js</label>
                 </div>
                 <div>
-                  <h4>Upload File:</h4>
-                  <label for="upload"></label>
-                  <input type="file" id="upload" name="upload" />
+                  <input
+                    type="checkbox"
+                    id="react-js"
+                    name="technology"
+                    value="react-js"
+                  />
+                  <label for="react-js">React Js</label>
                 </div>
-                <input type="submit" value="Submit" />
-              </form>
+              </div>
+              <!-- Bagian Kanan -->
+              <div style="display: flex; flex-direction: column">
+                <div>
+                  <input
+                    type="checkbox"
+                    id="next-js"
+                    name="technology"
+                    value="next-js"
+                  />
+                  <label for="next-js">Next Js</label>
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id="typescript"
+                    name="technology"
+                    value="typescript"
+                  />
+                  <label for="typescript">TypeScript</label>
+                </div>
+              </div>
             </div>
-            
-        </form>
+            <div>
+              <h4>Upload File:</h4>
+              <label for="upload"></label>
+              <input type="file" id="upload" name="upload" />
+            </div>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      </form>
     </div>
     <script src="assets/js/project.js"></script>
+    <script src="assets/js/nav.js"></script>
   </body>
 </html>

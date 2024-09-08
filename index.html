@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog</title>
+    <title>Home</title>
     <style>
       *,
       body {
@@ -16,14 +16,22 @@
       .hamburger-container {
         display: flex;
         flex-direction: column;
+        position: absolute;
+        top: 78px; 
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        z-index: 999; 
+        margin-bottom: 20px; 
       }
 
       .hamburger-container a {
-        width: 100%;
         text-align: center;
         background-color: rgba(238, 179, 51, 0.693);
         padding: 10px 0;
         border: 1px solid brown;
+        width: 100%;
       }
 
       .hamburger-container .hamburger-active {
@@ -50,7 +58,6 @@
 
       /* Responsif untuk layar kecil */
       @media screen and (max-width: 768px) {
-
         .container {
           flex-direction: column;
         }
@@ -63,11 +70,11 @@
         .personal-photo {
           display: flex;
           padding-right: 50%;
-          position: static; 
+          position: static;
         }
 
         .social-media {
-          padding-left:5%;
+          padding-left: 5%;
         }
       }
 
@@ -82,7 +89,10 @@
       }
     </style>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet"/>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      rel="stylesheet"
+    />
 
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -93,7 +103,8 @@
   </head>
   <body>
     <nav>
-      <ul class="navbar-container"
+      <ul
+        class="navbar-container"
         style="
           background-color: #ffeac5;
           list-style-type: none;
@@ -140,9 +151,9 @@
             margin-right: 60px;
           "
         >
-        <button class="hamburger-button" onclick="toggleHamburger()">
-          <i class="fa-solid fa-bars"></i>
-        </button>
+          <button class="hamburger-button" onclick="toggleHamburger()">
+            <i class="fa-solid fa-bars"></i>
+          </button>
           <a
             href="contact.html"
             style="
@@ -161,10 +172,10 @@
         <a href="/my-project.html">Add Project</a>
         <a href="/contact.html">Contact me</a>
       </div>
-
     </nav>
     <div class="container">
-      <div class="card"
+      <div
+        class="card"
         style="
           width: 1000px;
           margin: auto;
@@ -178,9 +189,7 @@
           style="padding-top: 50px; padding-left: 50px; padding-right: 450px"
           class="text-intro"
         >
-          <h2 style="display: contents;">
-            Hi, Welcome to my personal website
-          </h2>
+          <h2 style="display: contents">Hi, Welcome to my personal website</h2>
           <p style="margin-bottom: 15px; margin-top: 10px; text-align: justify">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit.
             Asperiores, harum exercitationem voluptates commodi ea assumenda
@@ -251,7 +260,9 @@
             <h1 style="font-size: 28px; text-align: center; margin-top: 10px">
               Abdul Rohman
             </h1>
-            <p style="font-size: 20px; text-align: center; padding-bottom: 10px;">
+            <p
+              style="font-size: 20px; text-align: center; padding-bottom: 10px"
+            >
               Fullstack Developer
             </p>
           </div>
