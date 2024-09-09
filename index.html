@@ -269,7 +269,51 @@
         </div>
       </div>
     </div>
+
+    <h1>My Projects</h1>
+    <div id="project-list"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectList = document.getElementById('project-list');
+            const projects = Object.keys(localStorage).filter(key => key.startsWith('project-'));
+
+            projects.forEach(key => {
+                const projectData = JSON.parse(localStorage.getItem(key));
+                const projectCard = document.createElement('a');
+                projectCard.href = `project-detail.html?project=${key}`;
+                projectCard.innerHTML = `
+                    <div class="project-card" style="background-color: #ffeac5; margin-bottom: 20px; padding: 20px; border-radius: 5px;">
+                        <h2>${projectData.projectName}</h2>
+                        <p><strong>Duration:</strong> ${calculateDuration(new Date(projectData.startDate), new Date(projectData.endDate))}</p>
+                        <p><strong>Description:</strong> ${projectData.description}</p>
+                        ${projectData.image ? `<img src="${projectData.image}" alt="Project Image" style="max-width: 100%; height: auto; margin-top: 10px;">` : ''}
+                    </div>
+                `;
+                projectList.appendChild(projectCard);
+            });
+        });
+
+        function calculateDuration(startDate, endDate) {
+            const oneDay = 24 * 60 * 60 * 1000;
+            const diffDays = Math.round((endDate - startDate) / oneDay);
+            const weeks = Math.floor(diffDays / 7);
+            const days = diffDays % 7;
+            let duration = '';
+
+            if (weeks > 0) {
+                duration += `${weeks} week${weeks > 1 ? 's' : ''}`;
+            }
+            if (days > 0) {
+                if (duration) duration += ' and ';
+                duration += `${days} day${days > 1 ? 's' : ''}`;
+            }
+
+            return duration || '0 days';
+        }
+    </script>
     <script src="assets/js/nav.js"></script>
+    <script src="assets/js/project.js"></script>
     <!-- <script src="learning/9.asynchronous/2.promise.js"></script> -->
   </body>
 </html>

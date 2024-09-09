@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Create a header for "MY PROJECT" and append it to the body
   projectHeader.id = "project-header";
-  projectHeader.innerHTML = "<h1>MY PROJECT</h1>";
+  // projectHeader.innerHTML = "<h1>MY PROJECT</h1>";
   document.querySelector("body").appendChild(projectHeader);
 
   // Create a section to display the list of projects

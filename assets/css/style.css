@@ -25,3 +25,51 @@
 .social-media a i:hover {
   transform: scale(1.1);
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="date"], textarea, input[type="text"], input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.project-card {
+  background-color: #ffeac5;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.project-card img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
