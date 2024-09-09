@@ -269,49 +269,58 @@
         </div>
       </div>
     </div>
+     <!-- Navigasi dan konten lain -->
 
-    <h1>My Projects</h1>
-    <div id="project-list"></div>
+  <h1>My Projects</h1>
+  <div id="project-list"></div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const projectList = document.getElementById('project-list');
-            const projects = Object.keys(localStorage).filter(key => key.startsWith('project-'));
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const projectList = document.getElementById('project-list');
 
-            projects.forEach(key => {
-                const projectData = JSON.parse(localStorage.getItem(key));
-                const projectCard = document.createElement('a');
-                projectCard.href = `project-detail.html?project=${key}`;
-                projectCard.innerHTML = `
-                    <div class="project-card" style="background-color: #ffeac5; margin-bottom: 20px; padding: 20px; border-radius: 5px;">
-                        <h2>${projectData.projectName}</h2>
-                        <p><strong>Duration:</strong> ${calculateDuration(new Date(projectData.startDate), new Date(projectData.endDate))}</p>
-                        <p><strong>Description:</strong> ${projectData.description}</p>
-                        ${projectData.image ? `<img src="${projectData.image}" alt="Project Image" style="max-width: 100%; height: auto; margin-top: 10px;">` : ''}
-                    </div>
-                `;
-                projectList.appendChild(projectCard);
-            });
-        });
+      // Mendapatkan semua kunci proyek dari localStorage
+      const projectKeys = Object.keys(localStorage).filter(key => key.startsWith('project_'));
 
-        function calculateDuration(startDate, endDate) {
-            const oneDay = 24 * 60 * 60 * 1000;
-            const diffDays = Math.round((endDate - startDate) / oneDay);
-            const weeks = Math.floor(diffDays / 7);
-            const days = diffDays % 7;
-            let duration = '';
+      projectKeys.forEach(key => {
+        const projectData = JSON.parse(localStorage.getItem(key));
 
-            if (weeks > 0) {
-                duration += `${weeks} week${weeks > 1 ? 's' : ''}`;
-            }
-            if (days > 0) {
-                if (duration) duration += ' and ';
-                duration += `${days} day${days > 1 ? 's' : ''}`;
-            }
+        const projectCard = document.createElement('div');
+        projectCard.className = 'project-card';
 
-            return duration || '0 days';
+        // Membuat konten kartu proyek
+        projectCard.innerHTML = `
+          <img src="${projectData.imageSrc}" alt="${projectData.projectName}" style="max-width: 300px; max-height: 300px;" />
+          <p><strong>Project Name:</strong> ${projectData.projectName}</p>
+          <p><strong>Duration:</strong> ${projectData.duration}</p>
+          <p><strong>Description:</strong> ${getShortDescription(projectData.description)}</p>
+          <p><strong>Technologies:</strong> ${projectData.technologies}</p>
+          <div class="actions">
+            <button class="edit" data-key="${key}">Edit</button>
+            <button class="delete" data-key="${key}">Delete</button>
+          </div>
+        `;
+
+        projectList.appendChild(projectCard);
+      });
+
+      function getShortDescription(description) {
+        const words = description.split(' ');
+        return words.length > 10 ? words.slice(0, 10).join(' ') + '......' : description;
+      }
+
+      // Event listener untuk tombol Delete
+      projectList.addEventListener('click', (event) => {
+        if (event.target.classList.contains('delete')) {
+          const key = event.target.getAttribute('data-key');
+          localStorage.removeItem(key);
+          event.target.parentElement.parentElement.remove();
         }
-    </script>
+        // Implementasi fungsi Edit jika diperlukan
+      });
+    });
+  </script>
+
+    
     <script src="assets/js/nav.js"></script>
     <script src="assets/js/project.js"></script>
     <!-- <script src="learning/9.asynchronous/2.promise.js"></script> -->

@@ -130,68 +130,61 @@
         <a href="/contact.html">Contact me</a>
       </div>
     </nav>
-    <h1>Add New Project</h1>
-    <form id="project-form">
-        <div>
-            <label for="project-name">Project Name:</label>
-            <input type="text" id="project-name" name="project-name" required>
-        </div>
-        <div>
-            <label for="start-date">Start Date:</label>
-            <input type="date" id="start-date" name="start-date" required>
-        </div>
-        <div>
-            <label for="end-date">End Date:</label>
-            <input type="date" id="end-date" name="end-date" required>
-        </div>
-        <div>
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="4" required></textarea>
-        </div>
-        <div>
-            <label for="upload">Upload Image:</label>
-            <input type="file" id="upload" name="upload" accept="image/*">
-        </div>
-        <button type="submit">Save Project</button>
-    </form>
-    <script>
-      document.getElementById('project-form').addEventListener('submit', function(event) {
-          event.preventDefault();
-
-          // Handle file upload
-          const fileInput = document.getElementById('upload');
-          if (fileInput.files.length > 0) {
-              const file = fileInput.files[0];
-              const reader = new FileReader();
-              reader.onload = function(e) {
-                  projectData.image = e.target.result;
-                  saveProject(projectData);
-              };
-              reader.readAsDataURL(file);
-          } else {
-              saveProject(projectData);
-          }
-          const projectName = document.getElementById('project-name').value;
-          const startDate = new Date(document.getElementById('start-date').value);
-          const endDate = new Date(document.getElementById('end-date').value);
-          const description = document.getElementById('description').value;
-
-          const projectData = {
-              projectName,
-              startDate: startDate.toISOString(),
-              endDate: endDate.toISOString(),
-              description
-          };
-
-          
-      });
-
-      function saveProject(projectData) {
-          const projectKey = `project-${Date.now()}`;
-          localStorage.setItem(projectKey, JSON.stringify(projectData));
-          window.location.href = 'index.html'; // Redirect after saving
-      }
-  </script>
+    <h1>ADD MY PROJECT</h1>
+    <div>
+        <form id="project-form">
+            <div>
+                <h4>Project Name</h4>
+                <label for="project"></label>
+                <input type="text" id="project" />
+            </div>
+            <div style="display: flex; gap: 320px;">
+                <h4>Start Date</h4>
+                <h4>End Date</h4>
+            </div>
+            <div style="display: flex; gap: 20px;">
+                <input type="date" id="start-date" />
+                <input type="date" id="end-date" />
+            </div>
+            <div>
+                <h4>Description</h4>
+                <label for="description"></label>
+                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+            </div>
+            <div>
+              <h4>Technologies</h4>
+                <!-- Bagian Kiri -->
+                <div style="display: flex; gap: 20px;">
+                  <div style="display: flex; flex-direction: column;">
+                    <div>
+                      <input type="checkbox" id="node-js" name="technology" value="node-js" />
+                      <label for="node-js">Node Js</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="react-js" name="technology" value="react-js" />
+                      <label for="react-js">React Js</label>
+                    </div>
+                  </div>
+                  <!-- Bagian Kanan -->
+                  <div style="display: flex; flex-direction: column;">
+                    <div>
+                      <input type="checkbox" id="next-js" name="technology" value="next-js" />
+                      <label for="next-js">Next Js</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="typescript" name="technology" value="typescript" />
+                      <label for="typescript">TypeScript</label>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4>Upload File:</h4>
+                  <label for="upload"></label>
+                  <input type="file" id="upload" name="upload" />
+                </div>
+                <input type="submit" value="Submit" />
+              </form>
+            </div>
     <script src="assets/js/project.js"></script>
     <script src="assets/js/nav.js"></script>
   </body>
