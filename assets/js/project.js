@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const projectKey = `project_${Date.now()}`;
         localStorage.setItem(projectKey, JSON.stringify(projectData));
 
-        // Redirect ke index.html
-        window.location.href = 'index.html';
+        // Redirect ke /
+        window.location.href = '/';
       };
 
       reader.readAsDataURL(file);
