@@ -8,6 +8,8 @@ app.set("views", path.join(__dirname, "./views"));
 
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 
+app.use(express.urlencoded({extended: true}));
+
 // routing
 app.get("/", home);
 app.get("/my-project", myProject);
@@ -42,7 +44,8 @@ function addProjectView(req, res) {
 }
 
 function addProject(req, res) {
-    console.log("berhasil post project")
+    const body = req.body;
+    console.log(body);
 }
 
 app.listen(port, () => {
