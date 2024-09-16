@@ -19,6 +19,8 @@ app.get("/project/detail/:id", projectDetail);
 app.get("/add-project", addProjectView);
 app.post("/add-project", addProject);
 
+const projects = [];
+
 function home(req, res) {
   res.render("index");
 }
@@ -44,8 +46,23 @@ function addProjectView(req, res) {
 }
 
 function addProject(req, res) {
-    const body = req.body;
-    console.log(body);
+    const { project, started, completed, description, technology1, technology2, technology3, technology4 } = req.body;
+
+    const data = {
+        project,
+        started,
+        completed,
+        description,
+        technology1,
+        technology2,
+        technology3,
+        technology4,
+        author: "Abdul Rohman",
+        createdAt: new Date(),
+    };
+
+    projects.unshift(data);
+    console.log("isi project sekarang : ", projects);
 }
 
 app.listen(port, () => {
