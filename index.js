@@ -7,39 +7,42 @@ app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "./views"));
 
 app.use("/assets", express.static(path.join(__dirname, "assets")));
-app.use(express.urlencoded({ extended: true }));
 
 // routing
 app.get("/", home);
-
-function home(request, response) {
-  response.render("index");
-}
-
 app.get("/my-project", myProject);
-
-function myProject(request, response) {
-  response.render("my-project");
-}
-
-// app.post("/my-project", myProject);
-// function myProject(request, response) {
-//   console.log("Sukses post form");
-// }
-
 app.get("/contact", contact);
-function contact(request, response) {
-  response.render("contact");
-}
-
 app.get("/testimonial", testimonial);
-function testimonial(request, response) {
-  response.render("testimonial");
+app.get("/project/detail/:id", projectDetail);
+app.get("/add-project", addProjectView);
+app.post("/add-project", addProject);
+
+function home(req, res) {
+  res.render("index");
 }
 
-app.get("/project-detail", projectDeatil);
-function projectDeatil(request, response) {
-  response.render("project-detail");
+function myProject(req, res) {
+  res.render("my-project");
+}
+
+function contact(req, res) {
+  res.render("contact");
+}
+
+function testimonial(req, res) {
+  res.render("testimonial");
+}
+
+function projectDetail(req, res) {
+  res.render("project-detail");
+}
+
+function addProjectView(req, res) {
+    res.render("add-project");
+}
+
+function addProject(req, res) {
+    console.log("berhasil post project")
 }
 
 app.listen(port, () => {
