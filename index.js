@@ -51,7 +51,7 @@ function myProjectNew(req, res) {
 }
 
 function addProject(req, res) {
-    const { project, started, completed, description, technology1, technology2, technology3, technology4 } = req.body;
+    const { project, started, completed, description, technology1, technology2, technology3, technology4, upload } = req.body;
 
     const data = {
         project,
@@ -62,6 +62,7 @@ function addProject(req, res) {
         technology2,
         technology3,
         technology4,
+        upload,
         author: "Abdul Rohman",
         createdAt: new Date(),
     };

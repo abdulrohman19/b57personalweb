@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project New</title>
   <link rel="stylesheet" href="assets/css/project.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <style>
     *,
     body {
@@ -96,6 +97,7 @@
 
  {{#each projects}}
   <div id="project-detail">
+    <p><strong>Upload:</strong><img width="300px" src="https://wow.fan/cdn/shop/files/15452-image-1_89b0ff6b-c324-46ce-ac84-ecaf872b2cab.jpg?v=1726126407">{{upload}}</p>
     <p><strong>Project Name:</strong> {{project}}</p>
     <p><strong>Started:</strong> {{started}}</p>
     <p><strong>Completed:</strong> {{completed}}</p>
@@ -108,9 +110,9 @@
     </p>
     <p><strong>Author:</strong> {{author}}</p>
     <p><strong>Created At:</strong> {{createdAt}}</p>
-    
-    <button onclick="editProject('{{@index}}')">Edit</button>
-    <button onclick="deleteProject('{{@index}}')">Delete</button>
+
+    <button type="button" class="btn btn-primary" onclick="editProject('{{@index}}')">Edit</button>
+    <button class="btn btn-danger" onclick="deleteProject('{{@index}}')">Delete</button>
   </div>
 {{else}}
   <p>No projects found.</p>
