@@ -16,6 +16,7 @@ app.get("/my-project", myProject);
 app.get("/contact", contact);
 app.get("/testimonial", testimonial);
 app.get("/project/detail/:id", projectDetail);
+app.get("/my-project-new", myProjectNew);
 app.get("/add-project", addProjectView);
 app.post("/add-project", addProject);
 
@@ -45,6 +46,10 @@ function addProjectView(req, res) {
     res.render("add-project");
 }
 
+function myProjectNew(req, res) {
+    res.render("my-project-new", { projects })
+}
+
 function addProject(req, res) {
     const { project, started, completed, description, technology1, technology2, technology3, technology4 } = req.body;
 
@@ -62,7 +67,7 @@ function addProject(req, res) {
     };
 
     projects.unshift(data);
-    console.log("isi project sekarang : ", projects);
+    // console.log("isi project sekarang : ", projects);
 }
 
 app.listen(port, () => {
