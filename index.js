@@ -17,6 +17,7 @@ app.get("/contact", contact);
 app.get("/testimonial", testimonial);
 app.get("/project/detail/:id", projectDetail);
 app.get("/my-project-new", myProjectNew);
+app.get("/delete-project/:id", deleteProject);
 app.get("/add-project", addProjectView);
 app.post("/add-project", addProject);
 
@@ -50,6 +51,13 @@ function myProjectNew(req, res) {
     res.render("my-project-new", { projects })
 }
 
+function deleteProject(req, res) {
+    const id = req.params.id
+    projects.splice(id, 1);
+
+    res.redirect("/my-project-new")
+}   
+
 function addProject(req, res) {
     const { project, started, completed, description, technology1, technology2, technology3, technology4, upload } = req.body;
 
@@ -68,6 +76,7 @@ function addProject(req, res) {
     };
 
     projects.unshift(data);
+    res.redirect("/my-project-new");
     // console.log("isi project sekarang : ", projects);
 }
 

@@ -1,41 +1,28 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project New</title>
-  <link rel="stylesheet" href="assets/css/project.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <style>
-    *,
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-    #project-detail {
-      max-width: 80%; /* Increase the width to make it more like a news website */
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    #project-detail img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin-bottom: 20px;
-    }
-    #project-detail p {
-      margin: 10px 0;
-    }
-  </style>
-</head>
-<body>
-  <nav>
-    <ul
-      style="
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project New</title>
+    <link rel="stylesheet" href="assets/css/project.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      *, body { margin: 0; font-family: Arial, sans-serif; } #project-detail {
+      max-width: 80%; /* Increase the width to make it more like a news website
+      */ margin: 20px auto; padding: 20px; background: #fff; border: 1px solid
+      #ddd; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+      #project-detail img { max-width: 100%; height: auto; display: block;
+      margin-bottom: 20px; } #project-detail p { margin: 10px 0; }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul
+        style="
         background-color: #ffeac5;
         list-style-type: none;
         display: flex;
@@ -46,98 +33,98 @@
         margin-bottom: 50px;
         white-space: nowrap;
       "
-    >
-      <li>
-        <img
-          src="https://dumbways.id/assets/images/brandred.png"
-          style="
+      >
+        <li>
+          <img
+            src="https://dumbways.id/assets/images/brandred.png"
+            style="
             width: 50px;
             height: 25px;
             object-fit: contain;
             margin-left: 60px;
           "
-        />
-      </li>
-      <li>
-        <a
-          href="/"
-          style="text-decoration: none; color: brown; font-weight: bold"
-          >Home</a
-        >
-      </li>
-      <li>
-        <a
-          href="/my-project"
-          style="text-decoration: none; color: brown; font-weight: bold"
-          >My Project</a
-        >
-      </li>
-      <li
-        style="
+          />
+        </li>
+        <li>
+          <a
+            href="/"
+            style="text-decoration: none; color: brown; font-weight: bold"
+          >Home</a>
+        </li>
+        <li>
+          <a
+            href="/my-project"
+            style="text-decoration: none; color: brown; font-weight: bold"
+          >My Project</a>
+        </li>
+        <li
+          style="
           display: flex;
           width: 100%;
           justify-content: flex-end;
           margin-right: 60px;
         "
-      >
-        <a
-          href="/contact"
-          style="
+        >
+          <a
+            href="/contact"
+            style="
             text-decoration: none;
             background-color: brown;
             padding: 16px;
             color: white;
             border-radius: 20px;
           "
-          >Contact Me</a
-        >
-      </li>
-    </ul>
-  </nav>
+          >Contact Me</a>
+        </li>
+      </ul>
+    </nav>
+<div class="container text-center">
+      <div class="d-flex justify-content-end">
+        <a href="add-project" class="btn btn-warning">Add New Project</a>
+      </div>
+</div>
+    {{#each projects}}
+      <div id="project-detail">
+        <img
+          width="300px"
+          src="https://wow.fan/cdn/shop/files/15452-image-1_89b0ff6b-c324-46ce-ac84-ecaf872b2cab.jpg?v=1726126407"
+        />{{upload}}
+        <p><strong>Project Name:</strong> {{project}}</p>
+        <p><strong>Started:</strong> {{started}}</p>
+        <p><strong>Completed:</strong> {{completed}}</p>
+        <p><strong>Description:</strong> {{description}}</p>
+        <p><strong>Technologies:</strong>
+          {{#if technology1}} {{technology1}} {{/if}}
+          {{#if technology2}} {{technology2}} {{/if}}
+          {{#if technology3}} {{technology3}} {{/if}}
+          {{#if technology4}} {{technology4}} {{/if}}
+        </p>
+        <p><strong>Author:</strong> {{author}}</p>
+        <p><strong>Created At:</strong> {{createdAt}}</p>
 
- {{#each projects}}
-  <div id="project-detail">
-    <p><strong>Upload:</strong><img width="300px" src="https://wow.fan/cdn/shop/files/15452-image-1_89b0ff6b-c324-46ce-ac84-ecaf872b2cab.jpg?v=1726126407">{{upload}}</p>
-    <p><strong>Project Name:</strong> {{project}}</p>
-    <p><strong>Started:</strong> {{started}}</p>
-    <p><strong>Completed:</strong> {{completed}}</p>
-    <p><strong>Description:</strong> {{description}}</p>
-    <p><strong>Technologies:</strong> 
-      {{#if technology1}} {{technology1}} {{/if}} 
-      {{#if technology2}} {{technology2}} {{/if}} 
-      {{#if technology3}} {{technology3}} {{/if}} 
-      {{#if technology4}} {{technology4}} {{/if}} 
-    </p>
-    <p><strong>Author:</strong> {{author}}</p>
-    <p><strong>Created At:</strong> {{createdAt}}</p>
+        <div>
+        <a href="#"
+          class="btn btn-secondary"
+          onclick="editProject('{{@index}}')"
+        >Edit</a>
+        <a href="/delete-project/{{@index}}"
+          class="btn btn-warning"
+          onclick="deleteProject('{{@index}}')"
+        >Delete</a>
+        </div>
+      </div>
+    {{else}}
+      <p>No projects found.</p>
+    {{/each}}
 
-    <button type="button" class="btn btn-primary" onclick="editProject('{{@index}}')">Edit</button>
-    <button class="btn btn-danger" onclick="deleteProject('{{@index}}')">Delete</button>
-  </div>
-{{else}}
-  <p>No projects found.</p>
-{{/each}}
+    <script>
+      function editProject(index) { window.location.href =
+      `/edit-project/${index}`; } function deleteProject(index) { if
+      (confirm("Are you sure you want to delete this project?")) {
+      fetch(`/delete-project/${index}`, { method: 'DELETE' }) .then(response =>
+      response.json()) .then(data => { if (data.success) { location.reload(); }
+      else { alert("Failed to delete project"); } }); } }
+    </script>
 
-<script>
-  function editProject(index) {
-    window.location.href = `/edit-project/${index}`;  
-  }
-
-  function deleteProject(index) {
-    if (confirm("Are you sure you want to delete this project?")) {
-      fetch(`/delete-project/${index}`, { method: 'DELETE' })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            location.reload();
-          } else {
-            alert("Failed to delete project");
-          }
-        });
-    }
-  }
-</script>
-
-
-</body>
+  </body>
 </html>
