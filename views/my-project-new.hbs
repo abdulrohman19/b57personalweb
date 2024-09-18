@@ -83,12 +83,9 @@
         <a href="add-project" class="btn btn-warning">Add New Project</a>
       </div>
 </div>
-    {{#each projects}}
+    {{#each data}}
       <div id="project-detail">
-        <img
-          width="300px"
-          src="https://wow.fan/cdn/shop/files/15452-image-1_89b0ff6b-c324-46ce-ac84-ecaf872b2cab.jpg?v=1726126407"
-        />{{upload}}
+        <img width="300px" src="{{upload}}"/>
         <p><strong>Project Name:</strong> {{project}}</p>
         <p><strong>Started:</strong> {{started}}</p>
         <p><strong>Completed:</strong> {{completed}}</p>
@@ -103,7 +100,7 @@
         <p><strong>Created At:</strong> {{createdAt}}</p>
 
         <div>
-        <a href="#"
+        <a href="/edit-project/{{@index}}"
           class="btn btn-secondary"
           onclick="editProject('{{@index}}')"
         >Edit</a>
@@ -114,7 +111,7 @@
         </div>
       </div>
     {{else}}
-      <p>No projects found.</p>
+      <p>No data found.</p>
     {{/each}}
 
     <script>
