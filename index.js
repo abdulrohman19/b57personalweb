@@ -70,7 +70,14 @@ function testimonial(req, res) {
 }
 
 function projectDetail(req, res) {
-  res.render("project-detail");
+  const { index } = req.params;
+
+  if (!data[index]) {
+    res.render("Not-found");
+  } else {
+    res.render("project-detail", { data : data[index] });
+  }
+
 }
 
 function addProjectView(req, res) {
@@ -105,7 +112,8 @@ function editProject(req, res) {
     technology2,
     technology3,
     technology4,
-    upload } = req.body;
+    upload,
+     } = req.body;
   
   data[index] = {
     project: project,
@@ -137,22 +145,23 @@ function addProject(req, res) {
     upload,
   } = req.body;
 
-  const data = {
-    index: index,
-    project,
-    started,
-    completed,
-    description,
-    technology1,
-    technology2,
-    technology3,
-    technology4,
-    upload,
-    author: "Abdul Rohman",
-    createdAt: new Date(),
-  };
+   data.push(
+    {
+      project,
+      started, 
+      completed,
+      description,
+      technology1,
+      technology2,
+      technology3,
+      technology4,
+      upload: "https://wow.fan/cdn/shop/files/15452-image-1_89b0ff6b-c324-46ce-ac84-ecaf872b2cab.jpg?v=1726126407",
+      author: "Abdul Rohman",
+      createdAt: new Date(),
+    }
+   );
 
-  data.unshift(data);
+  // data.unshift(data);
   res.redirect("/my-project-new");
   // console.log("isi project sekarang : ", data);
 }
