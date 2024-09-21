@@ -117,7 +117,7 @@ function editProject(req, res) {
   res.redirect("/my-project-new")
 }
 
-function addProject(req, res) {
+async function addProject(req, res) {
   const {
     project,
     started,
@@ -130,21 +130,26 @@ function addProject(req, res) {
     upload,
   } = req.body;
 
-   data.push(
-    {
-      project,
-      started, 
-      completed,
-      description,
-      technology1,
-      technology2,
-      technology3,
-      technology4,
-      upload: "https://wow.fan/cdn/shop/files/15452-image-1_89b0ff6b-c324-46ce-ac84-ecaf872b2cab.jpg?v=1726126407",
-      author: "Abdul Rohman",
-      createdAt: new Date(),
-    }
-   );
+  const query = `INSERT INTO public.projects(project, description, upload, "createdAt", "updatedAt") VALUES('${project}', '${description}', 'https://downloadwap.com/thumbs2/wallpapers/2022/p2/abstract/48/bbrbbf78.jpg', now(), now())`;
+
+  const result = await sequelize.query(query, {type: QueryTypes.INSERT});
+
+  console.log("Data berhasil ditambahkan", result);
+  //  data.push(
+  //   {
+  //     project,
+  //     started, 
+  //     completed,
+  //     description,
+  //     technology1,
+  //     technology2,
+  //     technology3,
+  //     technology4,
+  //     upload: "https://wow.fan/cdn/shop/files/15452-image-1_89b0ff6b-c324-46ce-ac84-ecaf872b2cab.jpg?v=1726126407",
+  //     author: "Abdul Rohman",
+  //     createdAt: new Date(),
+  //   }
+  //  );
 
   // data.unshift(data);
   res.redirect("/my-project-new");
