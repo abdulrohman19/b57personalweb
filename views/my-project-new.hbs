@@ -139,7 +139,7 @@
     </div>
     <!-- Detail -->
     <div class="col-md-8">
-      <a href="/project-detail/{{@index}}"><strong>Project Name:</strong> {{project}}</a>
+      <a href="/project-detail/{{id}}"><strong>Project Name:</strong> {{project}}</a>
       <p><strong>Started:</strong> {{started}}</p>
       <p><strong>Completed:</strong> {{completed}}</p>
       <p><strong>Description:</strong> {{description}}</p>
@@ -154,8 +154,8 @@
       
       <!-- Edit & Delete -->
       <div>
-        <a href="/edit-project/{{@index}}" class="btn btn-secondary" onclick="editProject('{{@index}}')">Edit</a>
-        <a href="/delete-project/{{@index}}" class="btn btn-warning" onclick="deleteProject('{{@index}}')">Delete</a>
+        <a href="/edit-project/{{id}}" class="btn btn-secondary" onclick="editProject('{{@index}}')">Edit</a>
+        <a href="/delete-project/{{id}}" class="btn btn-warning" onclick="deleteProject('{{@index}}')">Delete</a>
       </div>
     </div>
   </div>

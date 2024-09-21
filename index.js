@@ -19,7 +19,7 @@ app.get("/", home);
 app.get("/my-project", myProject);
 app.get("/contact", contact);
 app.get("/testimonial", testimonial);
-app.get("/project-detail/:index", projectDetail);
+app.get("/project-detail/:id", projectDetail);
 app.get("/my-project-new", myProjectNew);
 app.get("/delete-project/:index", deleteProject);
 app.get("/edit-project/:index", editProjectView);
@@ -27,35 +27,7 @@ app.post("/edit-project/:index", editProject);
 app.get("/add-project", addProjectView);
 app.post("/add-project", addProject);
 
-const data = [
-  {
-    project: "1",
-    started: "1",
-    completed: "1",
-    description: "1",
-    technology1: "1",
-    technology2: "1",
-    technology3: "1",
-    technology4: "1",
-    upload: "https://wow.fan/cdn/shop/files/15452-image-1_89b0ff6b-c324-46ce-ac84-ecaf872b2cab.jpg?v=1726126407",
-    author: "Abdul Rohman",
-    createdAt: new Date(),
-  },
- 
-  {
-    project: "2",
-    started: "2",
-    completed: "2",
-    description: "2",
-    technology1: "2",
-    technology2: "2",
-    technology3: "2",
-    technology4: "2",
-    upload: "https://wow.fan/cdn/shop/files/15452-image-1_89b0ff6b-c324-46ce-ac84-ecaf872b2cab.jpg?v=1726126407",
-    author: "Abdul Rohman",
-    createdAt: new Date(),
-  },
-];
+const data = [];
 
 function home(req, res) {
   res.render("index");
@@ -73,15 +45,20 @@ function testimonial(req, res) {
   res.render("testimonial");
 }
 
-function projectDetail(req, res) {
-  const { index } = req.params;
+async function projectDetail(req, res) { 
+  const { id } = req.params;
 
-  if (!data[index]) {
+  const query = `SELECT * FROM public.projects WHERE id=${id}`;
+  const result = await sequelize.query(query, {type: QueryTypes.SELECT});
+
+  console.log("result", result);
+  console.log("result length", result.length)
+
+  if (!result.length) {
     res.render("Not-found");
   } else {
-    res.render("project-detail", { data : data[index] });
+    res.render("project-detail", { data : result[0] });
   }
-
 }
 
 function addProjectView(req, res) {
