@@ -22,8 +22,8 @@ app.get("/testimonial", testimonial);
 app.get("/project-detail/:id", projectDetail);
 app.get("/my-project-new", myProjectNew);
 app.get("/delete-project/:id", deleteProject);
-app.get("/edit-project/:index", editProjectView);
-app.post("/edit-project/:index", editProject);
+app.get("/edit-project/:id", editProjectView);
+app.post("/edit-project/:id", editProject);
 app.get("/add-project", addProjectView);
 app.post("/add-project", addProject);
 
@@ -87,14 +87,19 @@ async function deleteProject(req, res) {
   
 }
 
-function editProjectView(req, res) {
-  const index = req.params.index;
+async function editProjectView(req, res) {
+  const {id} = req.params;
 
-  res.render("edit-project", { data: data[index], index: index });
+  const query = `SELECT * FROM public.projects WHERE id=${id}`;
+  const result = await sequelize.query(query, { type: QueryTypes.SELECT});
+
+  if (!result.length) return res.render("Not-found");
+
+  res.render("edit-project", { data: result[0] });
 }
 
-function editProject(req, res) {
-  const index = req.params.index;
+async function editProject(req, res) {
+  const {id} = req.params;
   const { 
     project,
     started,
@@ -106,20 +111,11 @@ function editProject(req, res) {
     technology4,
     upload,
      } = req.body;
-  
-  data[index] = {
-    project: project,
-    started: started,
-    completed: completed,
-    description: description,
-    technology1: technology1,
-    technology2: technology2,
-    technology3: technology3,
-    technology4: technology4,
-    upload: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEwUXjA07nw_RSgSyV_KCvBjy8LKHoA2m9uA&s",
-    author: "Abdul Rohman",
-    createdAt: new Date(),
-  };
+
+  const query = `UPDATE public.projects SET project='${project}', description='${description}' WHERE id=${id}`;
+  const result = await sequelize.query(query, {type: QueryTypes.UPDATE});
+
+  console.log("Update berhasil", result);
 
   res.redirect("/my-project-new")
 }

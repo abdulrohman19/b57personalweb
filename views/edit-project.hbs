@@ -135,7 +135,7 @@
     <h1 class="text-center">Edit Project</h1>
   <div class="card">
     <div class="card-body">
-      <form action="/edit-project/{{index}}" method="post">
+      <form action="/edit-project/{{data.id}}" method="post">
         <div class="mb-3">
           <label for="project" class="form-label">Project Name</label>
           <input type="text" class="form-control" name="project" id="project" value="{{data.project}}"/>
