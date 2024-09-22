@@ -65,75 +65,87 @@
   </head>
   <body>
     <nav>
-      <ul
-        style="
-        background-color: #ffeac5;
-        list-style-type: none;
-        display: flex;
-        flex-direction: row;
-        gap: 35px;
-        align-items: center;
-        padding: 10px;
-        margin-bottom: 50px;
-        white-space: nowrap;
-      "
-      >
-        <li>
-          <img
-            src="https://dumbways.id/assets/images/brandred.png"
-            style="
-            width: 50px;
-            height: 25px;
-            object-fit: contain;
-            margin-left: 60px;
-          "
-          />
-        </li>
-        <li>
-          <a
-            href="/"
-            style="text-decoration: none; color: brown; font-weight: bold"
-          >Home</a>
-        </li>
-        <li>
-          <a
-            href="/my-project-new"
-            style="text-decoration: none; color: brown; font-weight: bold"
-          >Add Project</a>
-        </li>
-        <li
+  <ul
+    style="
+    background-color: #ffeac5;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 50px;
+    white-space: nowrap;
+    justify-content: space-between;
+  "
+  >
+    <div style="display: flex; align-items: center;">
+      <li>
+        <img
+          src="https://dumbways.id/assets/images/brandred.png"
           style="
-          display: flex;
-          width: 100%;
-          justify-content: flex-end;
-          margin-right: 60px;
+          width: 50px;
+          height: 25px;
+          object-fit: contain;
+          margin-left: 60px;
         "
-        >
-          <a
-            href="/contact"
-            style="
-            text-decoration: none;
-            background-color: brown;
-            padding: 16px;
-            color: white;
-            border-radius: 20px;
-          "
-          >Contact Me</a>
+        />
+      </li>
+      <li>
+        <a
+          href="/"
+          style="text-decoration: none; color: brown; font-weight: bold; margin-left: 20px;"
+        >Home</a>
+      </li>
+      <li>
+        <a
+          href="/my-project-new"
+          style="text-decoration: none; color: brown; font-weight: bold; margin-left: 20px;"
+        >Add Project</a>
+      </li>
+      <a
+          href="/testimonial"
+          style="text-decoration: none; color: brown; font-weight: bold; margin-left: 20px;"
+        >Testimonial</a>
+      </li>
+    </div>
+
+    <div style="display: flex; align-items: center;">
+      {{#if user}}
+        <li style="margin-right: 15px;">
+          <h1 style="font-size: 20px; margin: 0;">Hello, {{user.name}}</h1>
         </li>
-      </ul>
-      <div id="hamburger-container" class="hamburger-container hamburger-hide">
-        <a href="/">Home</a>
-        <a href="/my-project-new" class="hamburger-active"> Add Project</a>
-        <a href="/contact">Contact me</a>
-      </div>
-    </nav>
+        <li>
+          <a href="/logout" class="btn btn-warning" style="padding: 10px;">Logout</a>
+        </li>
+      {{else}}
+        <li>
+          <a href="/register" class="btn btn-warning" style="padding: 10px; margin-left: 15px;">Register</a>
+        </li>
+        <li>
+          <a href="/login" class="btn btn-warning" style="padding: 10px; margin-left: 15px;">Login</a>
+        </li>
+        <li>
+          <a href="/contact" class="btn btn-warning" style="padding: 10px; margin-left: 15px;">Contact Me</a>
+        </li>
+      {{/if}}
+    </div>
+  </ul>
+
+  <div id="hamburger-container" class="hamburger-container hamburger-hide">
+    <a href="/">Home</a>
+    <a href="/my-project-new" class="hamburger-active"> Add Project</a>
+    <a href="/contact">Contact me</a>
+  </div>
+</nav>
+
 
     <div class="container text-center">
       {{#if user}}
       <div class="d-flex justify-content-end">
         <a href="add-project" class="btn btn-warning">Add New Project</a>
       </div>
-    {{/if}}
+       {{/if}}
     </div>
 
     {{#each data}}
