@@ -29,6 +29,17 @@ app.post("/edit-project/:id", editProject);
 app.get("/add-project", addProjectView);
 app.post("/add-project", addProject);
 
+//auth & authorization
+app.get("/login", login);
+app.get("/register", register);
+
+function login (req, res) {
+  res.render("login");
+}
+
+function register (req, res) {
+  res.render("register");
+}
 
 function home(req, res) {
   res.render("index");
