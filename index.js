@@ -4,6 +4,7 @@ const port = 3000;
 const path = require("path");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
+const flash = require("express-flash");
 
 const projectModel = require('./models').project;
 const userModel = require("./models").user;
@@ -23,6 +24,7 @@ app.use(
     maxAge : 1000 * 60 * 60 * 24
   }
 }))
+app.use(flash());
 
 
 // routing
@@ -73,19 +75,25 @@ function registerView (req, res) {
 }
 
 async function register(req, res) {
-  const {name, email, password} = req.body;   
+  try {
+    const {name, email, password} = req.body;   
 
-  const saltRounds = 10
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-  await userModel.create({
-    name: name,
-    email: email,
-    password: hashedPassword,
-  });
-
-  res.redirect("/");
-}
+    const saltRounds = 10
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+  
+    await userModel.create({
+      name: name,
+      email: email,
+      password: hashedPassword,
+    });
+  
+    res.redirect("/");
+  } catch(error) {
+    req.flash("error", "Register Failed!");
+    res.redirect("/register");
+  }
+ }
+ 
 
 function home(req, res) {
   console.log(req.session);
