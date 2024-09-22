@@ -127,11 +127,15 @@
         <a href="/contact">Contact me</a>
       </div>
     </nav>
+
     <div class="container text-center">
+      {{#if user}}
       <div class="d-flex justify-content-end">
         <a href="add-project" class="btn btn-warning">Add New Project</a>
       </div>
+    {{/if}}
     </div>
+
     {{#each data}}
   <div id="project-detail" class="row mb-4">
     <div class="col-md-4">
