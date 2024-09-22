@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const path = require("path");
+const bcrypt = require("bcrypt");
+const session = require("express-session");
 
 const projectModel = require('./models').project;
 const userModel = require("./models").user;
@@ -10,8 +12,18 @@ app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "./views"));
 
 app.use("/assets", express.static(path.join(__dirname, "assets")));
+app.use(express.urlencoded({ extended: false }));
+app.use(
+  session({
+  name: "my-session",
+  secret: "sSvGA0mjZV",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge : 1000 * 60 * 60 * 24
+  }
+}))
 
-app.use(express.urlencoded({ extended: true }));
 
 // routing
 app.get("/", home);
@@ -37,8 +49,23 @@ function loginView (req, res) {
   res.render("login");
 }
 
-function login(req, res) {
+async function login(req, res) {
+  const { email, password } = req.body;   
 
+  const user = await userModel.findOne({
+    where: {
+      email: email
+    }
+  })
+  if (!user) return res.render("Not-found");
+
+  const isValidPassword = await bcrypt.compare(password, user.password);
+
+  if (!isValidPassword) return res.render("Not-found");
+
+  req.session.user = user;
+
+  res.redirect("/");
 }
 
 function registerView (req, res) {
@@ -46,19 +73,25 @@ function registerView (req, res) {
 }
 
 async function register(req, res) {
-  const {name, email, password} = req.body   
+  const {name, email, password} = req.body;   
+
+  const saltRounds = 10
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
 
   await userModel.create({
     name: name,
     email: email,
-    password: password,
+    password: hashedPassword,
   });
 
   res.redirect("/");
 }
 
 function home(req, res) {
-  res.render("index");
+  console.log(req.session);
+  const user = req.session.user;
+
+  res.render("index", { user });
 }
 
 function myProject(req, res) {
