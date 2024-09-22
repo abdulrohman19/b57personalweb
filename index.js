@@ -21,7 +21,7 @@ app.get("/contact", contact);
 app.get("/testimonial", testimonial);
 app.get("/project-detail/:id", projectDetail);
 app.get("/my-project-new", myProjectNew);
-app.get("/delete-project/:index", deleteProject);
+app.get("/delete-project/:id", deleteProject);
 app.get("/edit-project/:index", editProjectView);
 app.post("/edit-project/:index", editProject);
 app.get("/add-project", addProjectView);
@@ -73,11 +73,18 @@ async function myProjectNew(req, res) {
   res.render("my-project-new", { data: result });
 }
 
-function deleteProject(req, res) {
-  const index = req.params.index;
-  data.splice(index, 1);
+async function deleteProject(req, res) {
+  const { id } = req.params;
 
-  res.redirect("/my-project-new");
+  let query = `SELECT * FROM public.projects WHERE id=${id}`;
+  let result = await sequelize.query(query, {type: QueryTypes.SELECT});
+
+  if (!result.length) return res.render("Not-found");
+  
+    query = `DELETE FROM public.projects WHERE id=${id}`;
+    result = await sequelize.query(query, { type: QueryTypes.DELETE });
+    res.redirect("/my-project-new");
+  
 }
 
 function editProjectView(req, res) {
