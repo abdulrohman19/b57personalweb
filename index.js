@@ -52,23 +52,36 @@ function loginView (req, res) {
 }
 
 async function login(req, res) {
-  const { email, password } = req.body;   
+  try {
+    const { email, password } = req.body;   
 
   const user = await userModel.findOne({
     where: {
       email: email
     }
   })
-  if (!user) return res.render("Not-found");
+  if (!user) {
+    req.flash("error", "Email or Password is Wrong!");
+    return res.redirect("/login");
+  }
 
   const isValidPassword = await bcrypt.compare(password, user.password);
 
-  if (!isValidPassword) return res.render("Not-found");
+  if (!isValidPassword) {
+    req.flash("error", "Email or Password is Wrong!");
+    return res.redirect("/login");
+  }
 
   req.session.user = user;
 
+  req.flash("success", "Login Success!");
+
   res.redirect("/");
-}
+  } catch(error) {
+    req.flash("error", "Something went wrong!");
+    res.redirect("/");
+  }
+  }
 
 function registerView (req, res) {
   res.render("register");
@@ -86,8 +99,9 @@ async function register(req, res) {
       email: email,
       password: hashedPassword,
     });
-  
-    res.redirect("/");
+    
+    req.flash("success", "Register Success!");
+    res.redirect("/login");
   } catch(error) {
     req.flash("error", "Register Failed!");
     res.redirect("/register");
@@ -134,10 +148,9 @@ function addProjectView(req, res) {
 
 async function myProjectNew(req, res) {
   const result = await projectModel.findAll();
+  const user = req.session.user;
 
-  console.log(result);
-
-  res.render("my-project-new", { data: result });
+  res.render("my-project-new", { data: result, user });
 }
 
 async function deleteProject(req, res) {

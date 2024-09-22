@@ -173,13 +173,69 @@
             >Contact Me</a
           >
         </li>
+        <li
+          style="
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+          "
+        >
+          <button class="hamburger-button" onclick="toggleHamburger()">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <a
+            href="/contact"
+            style="
+              text-decoration: none;
+              background-color: brown;
+              padding: 16px;
+              color: white;
+              border-radius: 20px;
+            "
+            >Login</a
+          >
+          <li
+          style="
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+          "
+        >
+          <button class="hamburger-button" onclick="toggleHamburger()">
+           
+          </button>
+          <a
+            href="/contact"
+            style="
+              text-decoration: none;
+              background-color: brown;
+              padding: 16px;
+              color: white;
+              border-radius: 20px;
+            "
+            >Register</a
+          >
+        </li>
+        </li>
       </ul>
       <div id="hamburger-container" class="hamburger-container hamburger-hide">
         <a href="/" class="hamburger-active">Home</a>
         <a href="/my-project-new">Add Project</a>
         <a href="/contact">Contact me</a>
       </div>
+       {{#if messages.error}}
+          <div class="alert alert-danger" role="alert">
+            {{messages.error}}
+          </div>
+        {{/if}}
+        {{#if messages.success}}
+          <div class="alert alert-success" role="alert">
+            {{messages.success}}
+          </div>
+        {{/if}}
     </nav>
+
+       
 
     <div class="container">
       <div
