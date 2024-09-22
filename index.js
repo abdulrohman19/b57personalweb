@@ -75,13 +75,19 @@ async function myProjectNew(req, res) {
 async function deleteProject(req, res) {
   const { id } = req.params;
 
-  let query = `SELECT * FROM public.projects WHERE id=${id}`;
-  let result = await sequelize.query(query, {type: QueryTypes.SELECT});
+  let result = await projectModel.findOne({
+    where: {
+      id: id,
+    },
+  });
 
-  if (!result.length) return res.render("Not-found");
+  if (!result) return res.render("Not-found");
   
-    query = `DELETE FROM public.projects WHERE id=${id}`;
-    result = await sequelize.query(query, { type: QueryTypes.DELETE });
+    await projectModel.destroy({
+      where: {
+        id: id,
+      },
+    });
     res.redirect("/my-project-new");
   
 }
@@ -89,12 +95,15 @@ async function deleteProject(req, res) {
 async function editProjectView(req, res) {
   const {id} = req.params;
 
-  const query = `SELECT * FROM public.projects WHERE id=${id}`;
-  const result = await sequelize.query(query, { type: QueryTypes.SELECT});
+  const result = await projectModel.findOne({
+    where: {
+      id: id,
+    },
+  });
 
-  if (!result.length) return res.render("Not-found");
+  if (!result) return res.render("Not-found");
 
-  res.render("edit-project", { data: result[0] });
+  res.render("edit-project", { data: result});
 }
 
 async function editProject(req, res) {
@@ -111,8 +120,18 @@ async function editProject(req, res) {
     upload,
      } = req.body;
 
-  const query = `UPDATE public.projects SET project='${project}', description='${description}' WHERE id=${id}`;
-  await sequelize.query(query, {type: QueryTypes.UPDATE});
+  const eproject = await projectModel.findOne({
+    where: {
+      id: id,
+    },
+  });
+
+  if (!eproject) return res.render("Not-found");
+
+  eproject.project = project;
+  eproject.description = description;
+
+  await eproject.save(); 
 
   res.redirect("/my-project-new")
 }
@@ -129,10 +148,12 @@ async function addProject(req, res) {
     technology4,
     upload,
   } = req.body;
-
-  const query = `INSERT INTO public.projects(project, description, upload, "createdAt", "updatedAt") VALUES('${project}', '${description}', 'https://downloadwap.com/thumbs2/wallpapers/2022/p2/abstract/48/bbrbbf78.jpg', now(), now())`;
-
-  await sequelize.query(query, {type: QueryTypes.INSERT});
+  
+  await projectModel.create({
+    project: project,
+    description: description,
+    upload: "https://downloadwap.com/thumbs2/wallpapers/2022/p2/abstract/48/bbrbbf78.jpg"
+  });
 
   res.redirect("/my-project-new");
 }
