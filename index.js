@@ -27,7 +27,6 @@ app.post("/edit-project/:id", editProject);
 app.get("/add-project", addProjectView);
 app.post("/add-project", addProject);
 
-const data = [];
 
 function home(req, res) {
   res.render("index");
@@ -47,18 +46,11 @@ function testimonial(req, res) {
 
 async function projectDetail(req, res) { 
   const { id } = req.params;
-
   const query = `SELECT * FROM public.projects WHERE id=${id}`;
-  const result = await sequelize.query(query, {type: QueryTypes.SELECT});
+  const result = await sequelize.query(query, { type: QueryTypes.SELECT });
 
-  console.log("result", result);
-  console.log("result length", result.length)
-
-  if (!result.length) {
-    res.render("Not-found");
-  } else {
+  if (!result.length) return res.render("Not-found");
     res.render("project-detail", { data : result[0] });
-  }
 }
 
 function addProjectView(req, res) {
@@ -69,7 +61,6 @@ async function myProjectNew(req, res) {
   const query = `SELECT * FROM public.projects`;
   const result = await sequelize.query(query, { type: QueryTypes.SELECT });
 
-  // console.log(result)
   res.render("my-project-new", { data: result });
 }
 
@@ -113,9 +104,7 @@ async function editProject(req, res) {
      } = req.body;
 
   const query = `UPDATE public.projects SET project='${project}', description='${description}' WHERE id=${id}`;
-  const result = await sequelize.query(query, {type: QueryTypes.UPDATE});
-
-  console.log("Update berhasil", result);
+  await sequelize.query(query, {type: QueryTypes.UPDATE});
 
   res.redirect("/my-project-new")
 }
@@ -135,28 +124,9 @@ async function addProject(req, res) {
 
   const query = `INSERT INTO public.projects(project, description, upload, "createdAt", "updatedAt") VALUES('${project}', '${description}', 'https://downloadwap.com/thumbs2/wallpapers/2022/p2/abstract/48/bbrbbf78.jpg', now(), now())`;
 
-  const result = await sequelize.query(query, {type: QueryTypes.INSERT});
+  await sequelize.query(query, {type: QueryTypes.INSERT});
 
-  console.log("Data berhasil ditambahkan", result);
-  //  data.push(
-  //   {
-  //     project,
-  //     started, 
-  //     completed,
-  //     description,
-  //     technology1,
-  //     technology2,
-  //     technology3,
-  //     technology4,
-  //     upload: "https://wow.fan/cdn/shop/files/15452-image-1_89b0ff6b-c324-46ce-ac84-ecaf872b2cab.jpg?v=1726126407",
-  //     author: "Abdul Rohman",
-  //     createdAt: new Date(),
-  //   }
-  //  );
-
-  // data.unshift(data);
   res.redirect("/my-project-new");
-  // console.log("isi project sekarang : ", data);
 }
 
 app.listen(port, () => {
