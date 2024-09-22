@@ -5,7 +5,9 @@ const path = require("path");
 const config = require("./config/config.json");
 const { Sequelize, QueryTypes } = require("sequelize");
 
-const sequelize = new Sequelize(config.development)
+const sequelize = new Sequelize(config.development);
+
+const projectModel = require('./models').project;
 
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "./views"));
@@ -46,11 +48,16 @@ function testimonial(req, res) {
 
 async function projectDetail(req, res) { 
   const { id } = req.params;
-  const query = `SELECT * FROM public.projects WHERE id=${id}`;
-  const result = await sequelize.query(query, { type: QueryTypes.SELECT });
+  const result = await projectModel.findOne({
+    where: {
+      id: id,
+    },
+  });
 
-  if (!result.length) return res.render("Not-found");
-    res.render("project-detail", { data : result[0] });
+  console.log("detail", result);
+
+  if (!result) return res.render("Not-found");
+    res.render("project-detail", { data : result });
 }
 
 function addProjectView(req, res) {
@@ -58,8 +65,9 @@ function addProjectView(req, res) {
 }
 
 async function myProjectNew(req, res) {
-  const query = `SELECT * FROM public.projects`;
-  const result = await sequelize.query(query, { type: QueryTypes.SELECT });
+  const result = await projectModel.findAll();
+
+  console.log(result);
 
   res.render("my-project-new", { data: result });
 }
