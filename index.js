@@ -2,13 +2,10 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const path = require("path");
-const config = require("./config/config.json");
-const { Sequelize, QueryTypes } = require("sequelize");
-
-const sequelize = new Sequelize(config.development);
 
 const projectModel = require('./models').project;
-
+const userModel = require("./models").user;
+ 
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "./views"));
 
@@ -30,15 +27,34 @@ app.get("/add-project", addProjectView);
 app.post("/add-project", addProject);
 
 //auth & authorization
-app.get("/login", login);
-app.get("/register", register);
+app.get("/login", loginView);
+app.get("/register", registerView);
 
-function login (req, res) {
+app.post("/register" ,register);
+app.post("/login", login);
+
+function loginView (req, res) {
   res.render("login");
 }
 
-function register (req, res) {
+function login(req, res) {
+
+}
+
+function registerView (req, res) {
   res.render("register");
+}
+
+async function register(req, res) {
+  const {name, email, password} = req.body   
+
+  await userModel.create({
+    name: name,
+    email: email,
+    password: password,
+  });
+
+  res.redirect("/");
 }
 
 function home(req, res) {
