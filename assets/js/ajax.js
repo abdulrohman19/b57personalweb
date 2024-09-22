@@ -35,7 +35,7 @@ function getTestimonialData(url) {
   
   async function getTestimonialsByRating(rating) {
     const testimonials = await getTestimonialData(
-      "https://api.npoint.io/325670a0ea8fb06fe0df"
+      "https://api.npoint.io/19779357327a5345c446"
     );
   
     const filteredTestimonials = testimonials.filter((testimonial) => {
