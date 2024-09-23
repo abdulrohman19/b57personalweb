@@ -3,99 +3,145 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Testimonial</title>
-    <style>
-      *,
-      body {
-        margin: 0;
-      }
-      .skill {
-        display: flex;
-        flex-direction: row;
-        margin-top: 30px;
-      }
-
-      .social-media {
-        margin-top: 50px;
-      }
-
-      .social-media i {
-        margin-right: 20px;
-        font-size: 30px;
-      }
-
-      .container {
-        display: flex;
-        flex-direction: row;
-        margin: 75px;
-      }
-    </style>
-
-    <link rel="stylesheet" href="assets/css/testimonial.css"/>
+      <link rel="stylesheet" href="assets/css/testimonial.css"/>
+      <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/project.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet"/>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      *, body { margin: 0; font-family: Arial, sans-serif; } #project-detail {
+      max-width: 80%; /* Increase the width to make it more like a news website
+      */ margin: 20px auto; padding: 20px; background: #fff; border: 1px solid
+      #ddd; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+      #project-detail img { max-width: 100%; height: auto; display: block;
+      margin-bottom: 20px; } #project-detail p { margin: 10px 0; }
+      .hamburger-button {
+        display: none;
+      }
+
+      .hamburger-container {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        z-index: 999;
+        margin-bottom: 20px;
+      }
+
+      .hamburger-container a {
+        text-align: center;
+        background-color: rgba(238, 179, 51, 0.693);
+        padding: 10px 0;
+        border: 1px solid brown;
+        width: 100%;
+      }
+
+      .hamburger-container .hamburger-active {
+        background-color: brown;
+        color: white;
+      }
+
+      .hamburger-hide {
+        display: none;
+      }
+
+      @media screen and (max-width: 640px) {
+        .navbar-container li a {
+          display: none;
+        }
+
+        .hamburger-button {
+          display: block;
+        }
+      }
+
+    </style>
   </head>
   <body>
     <script src="assets/js/ajax.js"></script>
     <nav>
-        <ul
+  <ul
+    style="
+    background-color: #ffeac5;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 50px;
+    white-space: nowrap;
+    justify-content: space-between;
+  "
+  >
+    <div style="display: flex; align-items: center;">
+      <li>
+        <img
+          src="https://dumbways.id/assets/images/brandred.png"
           style="
-            background-color: #ffeac5;
-            list-style-type: none;
-            display: flex;
-            flex-direction: row;
-            gap: 35px;
-            align-items: center;
-            padding: 10px;
-            margin-bottom: 50px;
-            white-space: nowrap;
-          "
-        >
-          <li>
-            <img
-              src="https://dumbways.id/assets/images/brandred.png"
-              style="
-                width: 50px;
-                height: 25px;
-                object-fit: contain;
-                margin-left: 60px;
-              "
-            />
-          </li>
-          <li>
-            <a
-              href="/"
-              style="text-decoration: none; color: brown; font-weight: bold"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a
-              href="/my-project-new"
-              style="text-decoration: none; color: brown; font-weight: bold"
-              >My Project</a
-            >
-          </li>
-          <li
-            style="
-              display: flex;
-              width: 100%;
-              justify-content: flex-end;
-              margin-right: 60px;
-            "
-          >
-            <a
-              href="/contact"
-              style="
-                text-decoration: none;
-                background-color: brown;
-                padding: 16px;
-                color: white;
-                border-radius: 20px;
-              "
-              >Contact Me</a
-            >
-          </li>
-        </ul>
-      </nav>
+          width: 50px;
+          height: 25px;
+          object-fit: contain;
+          margin-left: 60px;
+        "
+        />
+      </li>
+      <li>
+        <a
+          href="/"
+          style="text-decoration: none; color: brown; font-weight: bold; margin-left: 20px;"
+        >Home</a>
+      </li>
+      <li>
+        <a
+          href="/my-project-new"
+          style="text-decoration: none; color: brown; font-weight: bold; margin-left: 20px;"
+        >Add Project</a>
+      </li>
+      <a
+          href="/testimonial"
+          style="text-decoration: none; color: brown; font-weight: bold; margin-left: 20px;"
+        >Testimonial</a>
+      </li>
+    </div>
+
+    <div style="display: flex; align-items: center;">
+      {{#if user}}
+        <li style="margin-right: 15px;">
+          <h1 style="font-size: 20px; margin: 0;">Hello, {{user.name}}</h1>
+        </li>
+        <li>
+          <a href="/logout" class="btn btn-warning" style="padding: 10px;">Logout</a>
+        </li>
+      {{else}}
+        <li>
+          <a href="/register" class="btn btn-warning" style="padding: 10px; margin-left: 15px;">Register</a>
+        </li>
+        <li>
+          <a href="/login" class="btn btn-warning" style="padding: 10px; margin-left: 15px;">Login</a>
+        </li>
+        <li>
+          <a href="/contact" class="btn btn-warning" style="padding: 10px; margin-left: 15px;">Contact Me</a>
+        </li>
+      {{/if}}
+    </div>
+  </ul>
+
+  <div id="hamburger-container" class="hamburger-container hamburger-hide">
+    <a href="/">Home</a>
+    <a href="/my-project-new" class="hamburger-active"> Add Project</a>
+    <a href="/contact">Contact me</a>
+  </div>
+</nav>
     
     <div class="container">
         <h1>My Testimonials</h1>
@@ -129,7 +175,7 @@
         
          {{!-- <script src="assets/js/testimonial-new.js"></script> --}}
         <!-- <script src="assets/js/testimonial.js"></script> -->
-    <!-- <script src="assets/js/nav.js"></script> -->
+    {{!-- <script src="assets/js/nav.js"></script>  --}}
     <!-- <script src="learning/9.asynchronous/2.promise.js"></script> -->
   </body>
 </html>
