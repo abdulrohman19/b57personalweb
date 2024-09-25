@@ -5,6 +5,10 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const flash = require("express-flash");
+const {Sequelize, QueryTypes} = require("sequelize");
+const config = require("./config/config.json")
+
+const sequelize = new Sequelize(config.development);
 
 const projectModel = require('./models').project;
 const userModel = require("./models").user;
@@ -147,7 +151,11 @@ function addProjectView(req, res) {
 }
 
 async function myProjectNew(req, res) {
-  const result = await projectModel.findAll();
+  // const result = await projectModel.findAll();
+  const query = `SELECT public.projects.*, public.users.name FROM public.projects INNER JOIN public.users 
+  ON public.projects."userId" = public.users.id;`;
+  const result = await sequelize.query(query, {type: QueryTypes.SELECT });
+
   const user = req.session.user;
 
   res.render("my-project-new", { data: result, user });
