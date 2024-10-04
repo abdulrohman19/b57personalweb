@@ -133,7 +133,7 @@
     </nav>
     <h1>ADD PROJECT</h1>
     <div>
-        <form action="/add-project" method="post">
+        <form action="/add-project" method="post" enctype="multipart/form-data">
             <div>
                 <h4>Project Name</h4>
                 <label for="project"></label>
@@ -181,7 +181,7 @@
                 <div>
                   <h4>Upload File:</h4>
                   <label for="upload"></label>
-                  <input type="file" id="upload" name="upload" />
+                  <input type="file" id="upload" name="image" />
                 </div>
                 <input type="submit" value="Submit" />
               </form>
