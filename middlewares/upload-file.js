@@ -8,8 +8,8 @@ const storage = multer.diskStorage({
         const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
         console.log("isi file", file);
         cb(null, file.fieldname + "-" + uniqueSuffix);
-    }
-})
+    },
+});
 
 const upload = multer({ storage: storage });
 
