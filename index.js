@@ -7,6 +7,7 @@ const session = require("express-session");
 const flash = require("express-flash");
 const {Sequelize, QueryTypes} = require("sequelize");
 const config = require("./config/config.json")
+const upload = require("./middlewares/upload-file");
 
 const sequelize = new Sequelize(config.development);
 
@@ -42,7 +43,7 @@ app.get("/delete-project/:id", deleteProject);
 app.get("/edit-project/:id", editProjectView);
 app.post("/edit-project/:id", editProject);
 app.get("/add-project", addProjectView);
-app.post("/add-project", addProject);
+app.post("/add-project", upload.single("image") ,addProject); 
 
 //auth & authorization
 app.get("/login", loginView);
