@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <style>
+      *,
+      body {
+        margin: 0;
+      }
+      .hamburger-button {
+        display: none;
+      }
+
+      .hamburger-container {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        z-index: 999;
+        margin-bottom: 20px;
+      }
+
+      .hamburger-container a {
+        text-align: center;
+        background-color: rgba(238, 179, 51, 0.693);
+        padding: 10px 0;
+        border: 1px solid brown;
+        width: 100%;
+      }
+
+      .hamburger-container .hamburger-active {
+        background-color: brown;
+        color: white;
+      }
+
+      .hamburger-hide {
+        display: none;
+      }
+      @media screen and (max-width: 640px) {
+        .navbar-container li a {
+          display: none;
+        }
+
+        .hamburger-button {
+          display: block;
+        }
+      }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/project.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <ul
+        class="navbar-container"
+        style="
+          background-color: #ffeac5;
+          list-style-type: none;
+          display: flex;
+          flex-direction: row;
+          gap: 35px;
+          align-items: center;
+          padding: 10px;
+          margin-bottom: 50px;
+          white-space: nowrap;
+          height: 78px;
+        "
+      >
+        <li>
+          <img
+            src="https://dumbways.id/assets/images/brandred.png"
+            style="
+              width: 50px;
+              height: 25px;
+              object-fit: contain;
+              margin-left: 60px;
+            "
+          />
+        </li>
+        <li>
+          <a
+            href="/"
+            style="text-decoration: none; color: brown; font-weight: bold"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="/my-project-new"
+            style="text-decoration: none; color: brown; font-weight: bold"
+            >Add Project</a
+          >
+        </li>
+        <li
+          style="
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            margin-right: 60px;
+          "
+        >
+          <button class="hamburger-button" onclick="toggleHamburger()">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <a
+            href="/contact"
+            style="
+              text-decoration: none;
+              background-color: brown;
+              padding: 16px;
+              color: white;
+              border-radius: 20px;
+            "
+            >Contact Me</a
+          >
+        </li>
+      </ul>
+      <div id="hamburger-container" class="hamburger-container hamburger-hide">
+        <a href="/" >Home</a>
+        <a href="/my-project-new" >Add Project</a>
+        <a href="/contact"class="hamburger-active">Contact me</a>
+      </div>
+    </nav>
+
+    <form
+      onsubmit="sendEmail(event)"
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      "
+    >
+      <h2 style="text-align: center">Contact Me</h2>
+      <h3>Name</h3>
+      <input
+        id="name"
+        type="text"
+        placeholder="Full Name"
+        style="height: 30px"
+      />
+      <h3>Email</h3>
+      <input
+        id="email"
+        type="email"
+        placeholder="Email Address"
+        style="height: 30px"
+      />
+      <h3>Number</h3>
+      <input
+        id="phoneNumber"
+        type="number"
+        placeholder="Mobile Number"
+        style="height: 30px"
+      />
+      <h3>Subject</h3>
+
+      <select id="subject" style="height: 30px">
+        <option value="">Select an Option</option>
+        <option value="Frontend Developer">Frontend Developer</option>
+        <option value="Backend Developer">Backend Developer</option>
+        <option value="Fullstack Developer">Fullstack Developer</option>
+        <option value="Other">Other</option>
+      </select>
+      <h3>Message</h3>
+      <textarea
+        id="message"
+        cols="30"
+        rows="9"
+        placeholder="Your message"
+      ></textarea>
+      <input class="contact-button" type="submit" value="Submit" />
+    </form>
+    <script src="assets/js/contact.js"></script>
+    <script src="assets/js/nav.js"></script>
+  </body>
+</html>
